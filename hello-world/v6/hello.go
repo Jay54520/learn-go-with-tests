@@ -4,7 +4,7 @@ import "fmt"
 
 const helloPrefix  = "Hello, "
 
-func Hello(name string) string {
+func Hello(name, language string) string {
 	if name == "" {
 		name = "World"
 	}
