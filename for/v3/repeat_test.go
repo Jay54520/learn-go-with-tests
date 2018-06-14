@@ -3,15 +3,27 @@ package iteration
 import (
 	"testing"
 	"fmt"
+	"strings"
 )
 
 func TestRepeat(t *testing.T)  {
-	repeated := Repeat("a", 3)
-	expected := "aaa"
+	t.Run("custom repeat", func(t *testing.T) {
+		repeated := Repeat("a", 3)
+		expected := "aaa"
 
-	if repeated != expected {
-		t.Errorf("expected '%s' but got '%s'", expected, repeated)
-	}
+		if repeated != expected {
+			t.Errorf("expected '%s' but got '%s'", expected, repeated)
+		}
+	})
+
+	t.Run("strings repeat", func(t *testing.T) {
+		repeated := strings.Repeat("a", 3)
+		expected := "aaa"
+
+		if repeated != expected {
+			t.Errorf("expected '%s' but got '%s'", expected, repeated)
+		}
+	})
 }
 
 func BenchmarkRepeat(b *testing.B) {
