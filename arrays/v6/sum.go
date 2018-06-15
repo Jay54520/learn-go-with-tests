@@ -11,7 +11,8 @@ func Sum(numbers []int) int  {
 func SumAllTails(numbersToSum ...[]int) (sum []int)  {
 
 	for _, numbers := range numbersToSum {
-		sum = append(sum, Sum(numbers))
+		tail := numbers[1:]
+		sum = append(sum, Sum(tail))
 	}
 
 	return
