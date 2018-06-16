@@ -3,6 +3,7 @@ package main
 import (
 	"io"
 	"os"
+	"fmt"
 )
 
 func main()  {
@@ -10,5 +11,5 @@ func main()  {
 }
 
 func CountDown(writer io.Writer)  {
-	
+	fmt.Fprintf(writer, "3")
 }
