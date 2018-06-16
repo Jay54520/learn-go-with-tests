@@ -1,9 +1,11 @@
 package main
 
+import "io"
+
 func main()  {
 	CountDown()
 }
 
-func CountDown()  {
+func CountDown(writer io.Writer)  {
 	
 }
