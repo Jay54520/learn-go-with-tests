@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"errors"
+)
 
 type BitCoin int
 
@@ -21,6 +24,10 @@ func (w *Wallet) Balance() (balance BitCoin)  {
 }
 
 func (w *Wallet) Withdraw(amount BitCoin) error {
+	if amount > w.balance {
+		return errors.New("oh no")
+	}
+
 	w.balance -= amount
 	return nil
 }
