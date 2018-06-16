@@ -1,9 +1,12 @@
 package main
 
-import "io"
+import (
+	"io"
+	"os"
+)
 
 func main()  {
-	CountDown()
+	CountDown(os.Stdout)
 }
 
 func CountDown(writer io.Writer)  {
