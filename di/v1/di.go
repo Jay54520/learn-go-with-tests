@@ -1,5 +1,7 @@
 package main
 
-func Greet()  {
+import "bytes"
+
+func Greet(buffer *bytes.Buffer, name string)  {
 	
 }
