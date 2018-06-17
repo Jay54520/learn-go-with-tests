@@ -23,3 +23,7 @@ func CountDown(writer io.Writer)  {
 	time.Sleep(1 * time.Second)
 	fmt.Fprintf(writer, finalWord)
 }
+
+type Sleeper interface {
+	Sleep()
+}
