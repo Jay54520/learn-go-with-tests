@@ -8,7 +8,7 @@ import (
 )
 
 func main()  {
-	sleeper := &DefaultSleeper{}
+	sleeper := &ConfigurableSleeper{1 * time.Second, time.Sleep}
 	CountDown(os.Stdout, sleeper)
 }
 
@@ -27,14 +27,6 @@ func CountDown(writer io.Writer, sleeper Sleeper)  {
 
 type Sleeper interface {
 	Sleep()
-}
-
-type DefaultSleeper struct {
-
-}
-
-func (d *DefaultSleeper) Sleep()  {
-	time.Sleep(1 * time.Second)
 }
 
 type ConfigurableSleeper struct {
