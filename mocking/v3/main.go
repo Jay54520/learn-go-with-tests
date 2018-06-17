@@ -8,7 +8,8 @@ import (
 )
 
 func main()  {
-	CountDown(os.Stdout, time)
+	sleeper := &DefaultSleeper{}
+	CountDown(os.Stdout, sleeper)
 }
 
 const finalWord  = "Go!"
@@ -26,4 +27,12 @@ func CountDown(writer io.Writer, sleeper Sleeper)  {
 
 type Sleeper interface {
 	Sleep()
+}
+
+type DefaultSleeper struct {
+
+}
+
+func (d *DefaultSleeper) Sleep()  {
+	time.Sleep(1 * time.Second)
 }
