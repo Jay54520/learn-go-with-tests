@@ -42,6 +42,6 @@ type ConfigurableSleeper struct {
 	sleep func(duration time.Duration)
 }
 
-func (c *ConfigurableSleeper) Sleep(duration time.Duration)  {
-	c.sleep(duration)
+func (c *ConfigurableSleeper) Sleep()  {
+	c.sleep(c.duration)
 }
