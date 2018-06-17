@@ -20,3 +20,11 @@ Go!`
 		t.Errorf("got '%s' want '%s'", got, want)
 	}
 }
+
+type SpySleeper struct {
+	Calls int
+}
+
+func (s *SpySleeper) Sleep()  {
+	s.Calls++
+}
