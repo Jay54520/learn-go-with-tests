@@ -17,11 +17,11 @@ const countdownStart  = 3
 
 func CountDown(writer io.Writer, sleeper Sleeper)  {
 	for i := countdownStart; i > 0; i -- {
-		sleeper.Sleep(1 * time.Second)
+		sleeper.Sleep()
 		fmt.Fprintln(writer, i)
 	}
 
-	sleeper.Sleep(1 * time.Second)
+	sleeper.Sleep()
 	fmt.Fprintf(writer, finalWord)
 }
 
