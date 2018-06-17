@@ -18,9 +18,6 @@ const countdownStart  = 3
 func CountDown(writer io.Writer, sleeper Sleeper)  {
 	for i := countdownStart; i > 0; i -- {
 		sleeper.Sleep()
-	}
-
-	for i := countdownStart; i > 0; i -- {
 		fmt.Fprintln(writer, i)
 	}
 
