@@ -4,12 +4,13 @@ import (
 	"testing"
 	"net/http"
 	"net/http/httptest"
+	"fmt"
 )
 
 func TestGETPlayers(t *testing.T) {
 
 	t.Run("returns Pepper's score", func(t *testing.T) {
-		request, _ := http.NewRequest(http.MethodGet, "/players/Pepper", nil)
+		request, _ := newGetScoreRequest("Pepper")
 		response := httptest.NewRecorder()
 
 		PlayerServer(response, request)
@@ -17,7 +18,7 @@ func TestGETPlayers(t *testing.T) {
 	})
 
 	t.Run("returns Floyd's score", func(t *testing.T) {
-		request, _ := http.NewRequest(http.MethodGet, "/players/Floyd", nil)
+		request, _ := newGetScoreRequest("Floyd")
 		response := httptest.NewRecorder()
 
 		PlayerServer(response, request)
@@ -30,4 +31,8 @@ func assertResponseBody(t *testing.T, got, want string) {
 	if got != want {
 		t.Errorf("got '%s', want '%s'", got, want)
 	}
+}
+
+func newGetScoreRequest(player string) (*http.Request, error)  {
+	return http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", player), nil)
 }
