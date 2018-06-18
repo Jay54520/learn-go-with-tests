@@ -19,3 +19,7 @@ func GetPlayerScore(player string) (score string) {
 	}
 	return
 }
+
+type PlayerStore interface {
+	GetPlayerScore(player string) (score int)
+}
