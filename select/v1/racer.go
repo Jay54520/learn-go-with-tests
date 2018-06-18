@@ -1,5 +1,5 @@
 package racer
 
-func Racer(a, b string) string  {
-	return ""
+func Racer(a, b string) (winner string)  {
+	return
 }
