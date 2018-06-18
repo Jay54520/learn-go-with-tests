@@ -7,8 +7,8 @@ import (
 
 func Racer(a, b string) (winner string) {
 
-	aDuration := getDurationOfURL(a)
-	bDuration := getDurationOfURL(b)
+	aDuration := measureResponseTime(a)
+	bDuration := measureResponseTime(b)
 
 	if aDuration < bDuration {
 		return a
@@ -17,8 +17,8 @@ func Racer(a, b string) (winner string) {
 	return b
 }
 
-// getDurationOfURL takes an URL and return the duration of requesting it
-func getDurationOfURL(URL string) (duration time.Duration) {
+
+func measureResponseTime(URL string) (duration time.Duration) {
 	start := time.Now()
 	http.Get(URL)
 	duration = time.Since(start)
