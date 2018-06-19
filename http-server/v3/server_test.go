@@ -12,7 +12,7 @@ func TestGETPlayers(t *testing.T) {
 	store := StubPlayerStore{
 		map[string]int{
 			"Pepper": 20,
-			"Floyd": 10,
+			"Floyd":  10,
 		},
 	}
 	server := &PlayerServer{&store}
@@ -22,6 +22,7 @@ func TestGETPlayers(t *testing.T) {
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
+		assertStatus(t, response.Code, http.StatusOK)
 		assertResponseBody(t, response.Body.String(), "20")
 	})
 
@@ -30,7 +31,7 @@ func TestGETPlayers(t *testing.T) {
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
-
+		assertStatus(t, response.Code, http.StatusOK)
 		assertResponseBody(t, response.Body.String(), "10")
 	})
 
@@ -39,14 +40,15 @@ func TestGETPlayers(t *testing.T) {
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
-
-		got := response.Code
-		want := http.StatusNotFound
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, response.Code, http.StatusNotFound)
 	})
+}
+
+func assertStatus(t *testing.T, got int, want int) {
+	if got != want {
+		t.Errorf("got status %d want %d", got, want)
+	}
+
 }
 
 func assertResponseBody(t *testing.T, got, want string) {
@@ -55,16 +57,15 @@ func assertResponseBody(t *testing.T, got, want string) {
 	}
 }
 
-func newGetScoreRequest(player string) (*http.Request, error)  {
+func newGetScoreRequest(player string) (*http.Request, error) {
 	return http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", player), nil)
 }
-
 
 type StubPlayerStore struct {
 	scores map[string]int
 }
 
-func (s *StubPlayerStore) GetPlayerScore(name string) (score int)  {
+func (s *StubPlayerStore) GetPlayerScore(name string) (score int) {
 	score = s.scores[name]
 	return
 }
