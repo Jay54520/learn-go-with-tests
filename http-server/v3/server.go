@@ -5,15 +5,6 @@ import (
 	"fmt"
 )
 
-func GetPlayerScore(player string) (score string) {
-	if player == "Pepper" {
-		score = "20"
-	} else if player == "Floyd" {
-		score = "10"
-	}
-	return
-}
-
 type PlayerStore interface {
 	GetPlayerScore(player string) (score int)
 }
