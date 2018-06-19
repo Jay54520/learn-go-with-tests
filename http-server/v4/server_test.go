@@ -14,6 +14,7 @@ func TestGETPlayers(t *testing.T) {
 			"Pepper": 20,
 			"Floyd":  10,
 		},
+		[]string{},
 	}
 	server := &PlayerServer{&store}
 
@@ -44,9 +45,10 @@ func TestGETPlayers(t *testing.T) {
 	})
 }
 
-func TestStoreWins(t *testing.T)  {
+func TestStoreWins(t *testing.T) {
 	store := StubPlayerStore{
 		map[string]int{},
+		[]string{},
 	}
 	server := &PlayerServer{&store}
 
@@ -82,7 +84,7 @@ func newGetScoreRequest(player string) (*http.Request, error) {
 }
 
 type StubPlayerStore struct {
-	scores map[string]int
+	scores   map[string]int
 	winCalls []string
 }
 
@@ -91,6 +93,6 @@ func (s *StubPlayerStore) GetPlayerScore(name string) (score int) {
 	return
 }
 
-func (s *StubPlayerStore) RecordWin(name string)  {
+func (s *StubPlayerStore) RecordWin(name string) {
 	s.winCalls = append(s.winCalls, name)
 }
