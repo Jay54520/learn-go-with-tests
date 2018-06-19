@@ -38,3 +38,13 @@ func assertResponseBody(t *testing.T, got, want string) {
 func newGetScoreRequest(player string) (*http.Request, error)  {
 	return http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", player), nil)
 }
+
+
+type StubPlayerStore struct {
+	scores map[string]int
+}
+
+func (s *StubPlayerStore) GetPlayerScore(name string) (score int)  {
+	score = s.scores[name]
+	return
+}
